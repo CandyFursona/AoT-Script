@@ -1,8 +1,3 @@
--- config
-local AutoFarm = false
-local AutoRetry = false
---
-
 local obj = workspace:FindFirstChild("AUTO_FARM_DOUBLE_EXECUTE_CHECK")
 
 if obj then
@@ -152,6 +147,11 @@ local function modifyNape()
         nape.Anchored = true
         nape.Transparency = 1
         nape.Size = nape.Size * 1.5
+		nape.Size = Vector3.new(
+			nape.Size.X,
+			nape.Size.Y * 2.5,
+			nape.Size.Z
+		)
 
     end
 
@@ -174,9 +174,6 @@ local function setNextPosition()
     print("[setNextPosition] Все Nape перемещены!")
 end
 
-modifyNape()
-task.wait(0.5)
-setNextPosition()
 
 local function BackPlayer() 
 	hrp.Anchored = true
@@ -219,6 +216,8 @@ local once = false
 local try = false
 
 while true do
+	modifyNape()
+	setNextPosition()
 
 	if AutoRetry then
 		if rewardsUI.Visible and not once then
